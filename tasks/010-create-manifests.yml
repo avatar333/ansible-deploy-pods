@@ -1,0 +1,10 @@
+---
+
+- name: Create manifests
+  template:
+    src: template-a.yaml.j2
+    dest: "/tmp/{{ item.pod_name }}.yml"
+  loop: "{{ pod_list }}"
+  loop_control:
+    index_var: my_idx
+

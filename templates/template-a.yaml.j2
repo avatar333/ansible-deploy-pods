@@ -1,0 +1,41 @@
+kind: Deployment
+metadata:
+  name: "{{ pod_list[my_idx].pod_name }}"
+  labels:
+    app: "{{ pod_list[my_idx].pod_name }}"
+    zone: prod
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: "{{ pod_list[my_idx].pod_name }}"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ pod_list[my_idx].pod_name }}"
+        zone: prod
+        version: v1
+    spec:
+      containers:
+      - name: "{{ pod_list[my_idx].pod_name }}"
+        image: "{{ pod_list[my_idx].image }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: "{{ pod_list[my_idx].port }}"
+        env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        volumeMounts:
+{% for myvolmnt in pod_list[my_idx].volumemounts %}
+        - name: {{ myvolmnt.volmnt_name }}
+          mountPath: {{ myvolmnt.volmnt_path }}
+{% endfor %}
+      volumes:
+{% for myvol in pod_list[my_idx].volumes %}
+      - name: {{ myvol.vol_name }}
+        hostPath:
+          path: {{ myvol.vol_path }}
+{% endfor %}

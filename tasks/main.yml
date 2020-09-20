@@ -1,2 +1,11 @@
 ---
 # tasks file for ansible-deploy-pods
+
+#- name: tst
+#  debug:
+#    msg: "{{ item.pod_name }}, {{ item.image }}, {{ item.volumemounts.volmnt_name }}"
+#  loop: "{{ pod_list }}"
+
+- import_tasks: 010-create-manifests.yml
+  tags: create-manifests
+

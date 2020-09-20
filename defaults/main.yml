@@ -1,2 +1,84 @@
 ---
 # defaults file for ansible-deploy-pods
+
+ROOTCFG: /dockers/config
+ROOTDNLD: /dockers/downloads
+
+pod_list:
+  - pod_name: sonarr
+    image: linuxserver/sonarr
+    port: 8989
+    volumemounts:
+      - volmnt_name: sonarr-config
+        volmnt_path: "{{ ROOTCFG }}/sonarr"
+      - volmnt_name: sonarr-downloads
+        volmnt_path: "{{ ROOTDNLD }}/sabnzbd"
+      - volmnt_name: sonarr-mntroot
+        volmnt_path: /mnt
+    volumes:
+      - vol_name: sonarr-config
+        vol_path: /config
+      - vol_name: sonarr-downloads
+        vol_path: /downloads
+      - vol_name: sonarr-mntroot
+        vol_path: /tv
+  - pod_name: radarr
+    image: linuxserver/radarr
+    port: 7878
+    volumemounts:
+      - volmnt_name: radarr-config
+        volmnt_path: "{{ ROOTCFG }}/radarr"
+      - volmnt_name: radarr-downloads
+        volmnt_path: "{{ ROOTDNLD }}/sabnzbd"
+      - volmnt_name: radarr-mntroot
+        volmnt_path: /mnt
+    volumes:
+      - vol_name: sonarr-config
+        vol_path: /config
+      - vol_name: sonarr-downloads
+        vol_path: /downloads
+      - vol_name: sonarr-mntroot
+        vol_path: /tv
+  - pod_name: deluge
+    image: linuxserver/deluge
+    port: 8112
+    volumemounts:
+      - volmnt_name: deluge-config
+        volmnt_path: "{{ ROOTCFG }}/deluge"
+      - volmnt_name: deluge-downloads
+        volmnt_path: "{{ ROOTDNLD }}/deluge"
+    volumes:
+      - vol_name: deluge-config
+        vol_path: /config
+      - vol_name: deluge-downloads
+        vol_path: /downloads
+  - pod_name: jdownloader-2
+    image: jlesage/jdownloader-2
+    port: 5800
+    volumemounts:
+      - volmnt_name: jdownloader-config
+        volmnt_path: "{{ ROOTCFG }}/jdownloader"
+      - volmnt_name: jdownloader-downloads
+        volmnt_path: "{{ ROOTDNLD }}/jdownloader"
+    volumes:
+      - vol_name: jdownloader-config
+        vol_path: /config
+      - vol_name: jdownloader-downloads
+        vol_path: /output
+  - pod_name: sabnzbd
+    image: linuxserver/deluge
+    port: 8112
+    volumemounts:
+      - volmnt_name: sabnzbd-config
+        volmnt_path: "{{ ROOTCFG }}/sabnzbd"
+      - volmnt_name: sabnzbd-downloads
+        volmnt_path: "{{ ROOTDNLD }}/sabnzbd"
+      - volmnt_name: sabnzbd-incomplete-downloads
+        volmnt_path: "{{ ROOTDNLD }}/sabnzbd/incomplete-downloads"
+    volumes:
+      - vol_name: sabnzbd-config
+        vol_path: /config
+      - vol_name: sabnzbd-downloads
+        vol_path: /downloads
+      - vol_name: sabnzbd-incomplete
+        vol_path: /incomplete-downloads
