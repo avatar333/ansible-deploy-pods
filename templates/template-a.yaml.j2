@@ -1,3 +1,4 @@
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ pod_list[my_idx].pod_name }}"
@@ -22,7 +23,7 @@ spec:
         image: "{{ pod_list[my_idx].image }}"
         imagePullPolicy: Always
         ports:
-        - containerPort: "{{ pod_list[my_idx].port }}"
+        - containerPort: {{ pod_list[my_idx].port }}
         env:
         - name: PGID
           value: "1000"
