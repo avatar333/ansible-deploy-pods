@@ -66,8 +66,8 @@ pod_list:
       - vol_name: jdownloader-downloads
         vol_path: /output
   - pod_name: sabnzbd
-    image: linuxserver/deluge
-    port: 8112
+    image: linuxserver/sabnzbd
+    port: 8080
     volumemounts:
       - volmnt_name: sabnzbd-config
         volmnt_path: "{{ ROOTCFG }}/sabnzbd"
@@ -80,5 +80,5 @@ pod_list:
         vol_path: /config
       - vol_name: sabnzbd-downloads
         vol_path: /downloads
-      - vol_name: sabnzbd-incomplete
+      - vol_name: sabnzbd-incomplete-downloads
         vol_path: /incomplete-downloads

@@ -1,12 +1,5 @@
 ---
 
-- name: Create directories
-  file:
-    path: "{{ item.volumemounts[0].volmnt_path }}"
-    state: directory
-  loop: "{{ pod_list }}"
-  tags: create-dirs
-
 - name: Create manifests
   template:
     src: template-a.yaml.j2

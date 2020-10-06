@@ -6,6 +6,9 @@
 #    msg: "{{ item.pod_name }}, {{ item.image }}, {{ item.volumemounts.volmnt_name }}"
 #  loop: "{{ pod_list }}"
 
+- import_tasks: 005-create-directories.yml
+  tags: create-directories
+
 - import_tasks: 010-create-manifests.yml
   tags: create-manifests
 
