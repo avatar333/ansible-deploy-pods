@@ -9,6 +9,9 @@
 - import_tasks: 005-create-directories.yml
   tags: create-directories
 
+- import_tasks: 006-setup-admin-dashboard.yml
+  tags: setup-admin-dashboard
+
 - import_tasks: 010-create-manifests.yml
   tags: create-manifests
 
