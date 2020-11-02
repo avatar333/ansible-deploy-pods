@@ -10,10 +10,10 @@
     index_var: my_dir_idx
 
 
-- name: cd
-  command:
-    cmd: "{% for path in item.volumemounts %}
-          mkdir -v -p {{ path.volmnt_path }}
-          {% endfor %}"
-  loop: "{{ pod_list }}"
-  tags: cd
+#- name: cd
+#  command:
+#    cmd: "{% for path in item.volumemounts %}
+#          mkdir -v -p {{ path.volmnt_path }}
+#          {% endfor %}"
+#  loop: "{{ pod_list }}"
+#  tags: cd
