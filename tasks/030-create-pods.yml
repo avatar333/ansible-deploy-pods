@@ -1,0 +1,8 @@
+---
+
+
+- name: Create pods in their own namespaces
+  shell:
+    cmd: "kubectl apply -f /tmp/{{ item.pod_name }}.yml -n ns-{{ item.pod_name }}"
+  loop: "{{ pod_list }}"
+  

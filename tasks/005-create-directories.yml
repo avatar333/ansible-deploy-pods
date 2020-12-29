@@ -1,19 +1,19 @@
 ---
 
-- name: Create directories
-  file:
-    path: "{{ item.volumemounts[my_dir_idx].volmnt_path }}"
-    state: directory
-  loop: "{{ pod_list }}"
-  tags: create-dirs
-  loop_control:
-    index_var: my_dir_idx
-
-
-#- name: cd
-#  command:
-#    cmd: "{% for path in item.volumemounts %}
-#          mkdir -v -p {{ path.volmnt_path }}
-#          {% endfor %}"
+#- name: Create directories
+#  file:
+#    path: "{{ item.volumemounts[0].volmnt_path }}"
+#    state: directory
 #  loop: "{{ pod_list }}"
-#  tags: cd
+#  tags: create-dirs
+#  loop_control:
+#    index_var: my_dir_idx
+
+
+- name: cd
+  command:
+    cmd: "{% for path in item.volumemounts %}
+          mkdir -v -p {{ path.volmnt_path }}
+          {% endfor %}"
+  loop: "{{ pod_list }}"
+  tags: cd

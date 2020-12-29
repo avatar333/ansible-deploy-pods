@@ -1,0 +1,8 @@
+---
+
+- name: Create one namespace per pod
+  shell:
+    cmd: "kubectl create namespace ns-{{ item.pod_name }}"
+  loop: "{{ pod_list }}"
+
+

@@ -1,0 +1,6 @@
+---
+
+- name: Create services per pod, per namespace
+  shell:
+    cmd: "kubectl expose deployment {{ item.pod_name }} --type=NodePort --name=svc-{{ item.pod_name }} --namespace=ns-{{ item.pod_name }}"
+  loop: "{{ pod_list }}"

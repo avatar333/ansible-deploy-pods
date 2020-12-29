@@ -33,12 +33,12 @@ pod_list:
       - volmnt_name: radarr-mntroot
         volmnt_path: /mnt
     volumes:
-      - vol_name: sonarr-config
+      - vol_name: radarr-config
         vol_path: /config
-      - vol_name: sonarr-downloads
+      - vol_name: radarr-downloads
         vol_path: /downloads
-      - vol_name: sonarr-mntroot
-        vol_path: /tv
+      - vol_name: radarr-mntroot
+        vol_path: /movies
   - pod_name: deluge
     image: linuxserver/deluge
     port: 8112
